@@ -5,7 +5,7 @@ using System.Web;
 
 namespace source.Models
 {
-    public class OutPut
+    public class Output
     {
         public string Status { get; set; }
 

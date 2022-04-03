@@ -5,7 +5,7 @@ using System.Web;
 
 namespace source.Models.Google
 {
-    public class GoogleOutput : OutPut
+    public class GoogleOutput : Output
     {
         public Google Google { get; set; }
     }
