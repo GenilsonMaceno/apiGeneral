@@ -18,17 +18,17 @@ namespace source.App_Config
             get { return ConfigurationManager.AppSettings["GoogleAccounts"].ToString(); }
         }
 
-        public static string GoogleRedirect_uri
+        public static string GoogleRedirectUri
         {
             get { return ConfigurationManager.AppSettings["GoogleRedirect_uri"].ToString(); }
         }
 
-        public static string YoutubeClient_id
+        public static string YoutubeClientId
         {
             get { return ConfigurationManager.AppSettings["YoutubeClient_id"].ToString(); }
         }
 
-        public static string YoutubeClient_secret
+        public static string YoutubeClientSecret
         {
             get { return ConfigurationManager.AppSettings["YoutubeClient_secret"].ToString(); }
         }

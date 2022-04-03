@@ -2,20 +2,25 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+using System.Threading.Tasks;
 using System.Web;
-using System.Web.Mvc;
 
 namespace source.Controllers
 {
     [RoutePrefix("/api/google")]
-    public class GoogleController : Controller
+    public class GoogleController : ApiController
     {
         #region [Endpoint Google]
 
         private string _googleManagerment;
         private string _googleAccounts;
-        private string _googleRedirect_uri;
-        private string _oAuth2URL = "/o/oauth2/auth?";
+        private string _googleRedirectUri;
+        private string _googleUrl = "/o/oauth2/auth?client_id={0}&redirect_uri={1}&scope={2}&response_type={3}&access_type={4}";
+        private string _acessType; // offline
+        private string _responseType; // code
 
         #endregion
 
@@ -30,30 +35,29 @@ namespace source.Controllers
         {
             _googleManagerment = Config.GoogleManagerment;
             _googleAccounts = Config.GoogleAccounts;
-            _googleRedirect_uri = Config.GoogleRedirect_uri;
-            _clientId = Config.YoutubeClient_id;
-            _clientSecret = Config.YoutubeClient_secret;
+            _googleRedirectUri = Config.GoogleRedirectUri;
+            _clientId = Config.YoutubeClientId;
+            _clientSecret = Config.YoutubeClientSecret;
         }
 
 
         // GET: api/google/authorize
         [HttpGet]
         [Route("~/api/google/authorize")]
-        public ActionResult UrlAuthorize()
+        public async Task<HttpResponseMessage> UrlAuthorize()
         {
-            var endpoint = string.Concat
-                                        (   _googleAccounts, 
-                                            _oAuth2URL, 
-                                            "client_id=",
-                                            _clientId, 
-                                            "&redirect_uri=",
-                                            _googleRedirect_uri,
-                                            "&response_type=code&scope=",
-                                            _googleManagerment,
-                                            "access_type=offline"
-                                        );
+            _acessType = "offline";
+            _responseType = "code";
 
-            return View(endpoint);
+            var endpoint = string.Concat(_googleAccounts, string.Format(_googleUrl,_clientId, _googleRedirectUri, _googleManagerment, _responseType, _acessType));
+
+            var output = new
+            {
+                Url = endpoint,
+                Status = "Sucesso"
+            };
+
+            return Request.CreateResponse(HttpStatusCode.OK, output);
         }
     }
 }
