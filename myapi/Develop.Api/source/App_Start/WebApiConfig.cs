@@ -46,7 +46,7 @@ namespace source
            
             container.RegisterType<IGoogleServices, GoogleServices>(new HierarchicalLifetimeManager());
 
-            container.RegisterType<IHostBufferPolicySelector, WebHostBufferPolicySelector>(new HierarchicalLifetimeManager());
+            container.RegisterType<IHostBufferPolicySelector, HostBufferPolicySelector>(new HierarchicalLifetimeManager());
             container.RegisterType<IExceptionHandler, DefaultExceptionHandler>(new HierarchicalLifetimeManager());
             container.RegisterType<ModelMetadataProvider, EmptyModelMetadataProvider>(new HierarchicalLifetimeManager());
             container.RegisterType<ITraceManager, TraceManager>(new HierarchicalLifetimeManager());
