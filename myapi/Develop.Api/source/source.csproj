@@ -132,6 +132,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Config\DefaultExceptionHandler.cs" />
     <Compile Include="App_Config\HostBufferPolicySelector.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -175,7 +176,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Interfarce\Services\IGoogleServices.cs" />
-    <Compile Include="Models\DefaultExceptionHandler.cs" />
     <Compile Include="Models\Erro.cs" />
     <Compile Include="Models\Google\Google.cs" />
     <Compile Include="Models\Google\GoogleOutput.cs" />

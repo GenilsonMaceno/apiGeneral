@@ -47,8 +47,8 @@ namespace source
            
             container.RegisterType<IGoogleServices, GoogleServices>(new HierarchicalLifetimeManager());
 
-            container.RegisterType<IHostBufferPolicySelector, HostBufferPolicySelector>(new HierarchicalLifetimeManager());
-            container.RegisterType<IExceptionHandler, DefaultExceptionHandler>(new HierarchicalLifetimeManager());
+            container.RegisterType<IHostBufferPolicySelector, HostBufferPolicySelector>(new HierarchicalLifetimeManager()); // para entrada de buffer
+            container.RegisterType<IExceptionHandler, DefaultExceptionHandler>(new HierarchicalLifetimeManager()); // para tratamento exceção de requisição global
             container.RegisterType<ModelMetadataProvider, EmptyModelMetadataProvider>(new HierarchicalLifetimeManager());
             container.RegisterType<ITraceManager, TraceManager>(new HierarchicalLifetimeManager());
             container.RegisterType<ITraceWriter, SimpleTracer>(new HierarchicalLifetimeManager());
@@ -59,6 +59,7 @@ namespace source
             container.RegisterType<IActionValueBinder, DefaultActionValueBinder>(new HierarchicalLifetimeManager());
             container.RegisterType<IContentNegotiator, DefaultContentNegotiator>(new HierarchicalLifetimeManager(), new InjectionConstructor(true));
             container.RegisterType<IHttpControllerActivator, DefaultHttpControllerActivator>(new HierarchicalLifetimeManager());
+
 
 
             config.DependencyResolver = new UnityResolver(container);
