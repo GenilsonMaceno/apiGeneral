@@ -12,7 +12,6 @@ using source.Interfarce.Services;
 
 namespace source.Controllers
 {
-    [RoutePrefix("/api/google")]
     public class GoogleController : ApiController
     {
 
@@ -28,7 +27,7 @@ namespace source.Controllers
 
         // GET: api/google/authorize
         [HttpGet]
-        [Route("~/api/google/authorize")]
+        [ActionName("authorize")] // Nomeando uma action
         public async Task<HttpResponseMessage> UrlAuthorize()
         {
 

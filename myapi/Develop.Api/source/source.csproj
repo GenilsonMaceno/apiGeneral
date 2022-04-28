@@ -180,7 +180,7 @@
     <Compile Include="Models\Google\Google.cs" />
     <Compile Include="Models\Google\GoogleOutput.cs" />
     <Compile Include="Models\HttpControllerSelector.cs" />
-    <Compile Include="Models\HttpControllerTypeResolver.cs" />
+    <Compile Include="Models\MyCustomHttpControllerTypeResolver.cs" />
     <Compile Include="Models\Output.cs" />
     <Compile Include="Models\SimpleTracer.cs" />
     <Compile Include="Models\TraceManager.cs" />

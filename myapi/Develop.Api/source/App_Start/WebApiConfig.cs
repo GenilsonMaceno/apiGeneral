@@ -33,18 +33,18 @@ namespace source
             // Web API routes
             config.MapHttpAttributeRoutes();
 
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}"
-            );
+            //config.Routes.MapHttpRoute(
+            //    name: "DefaultApi",
+            //    routeTemplate: "api/{controller}"
+            //);
 
             config.Routes.MapHttpRoute(
-                name: "DefaultApi2",
-                routeTemplate: "api/{controller}/{id}",
+                name: "DefaultApi",
+                routeTemplate: "api/{controller}/{action}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
 
-           
+
             container.RegisterType<IGoogleServices, GoogleServices>(new HierarchicalLifetimeManager());
 
             container.RegisterType<IHostBufferPolicySelector, HostBufferPolicySelector>(new HierarchicalLifetimeManager()); // para entrada de buffer
@@ -54,7 +54,7 @@ namespace source
             container.RegisterType<ITraceWriter, SimpleTracer>(new HierarchicalLifetimeManager());
             container.RegisterType<IHttpControllerSelector, DefaultHttpControllerSelector>(new HierarchicalLifetimeManager(), new InjectionConstructor(config));
             container.RegisterType<IAssembliesResolver, DefaultAssembliesResolver>(new HierarchicalLifetimeManager());
-            container.RegisterType<IHttpControllerTypeResolver, /*Default*/HttpControllerTypeResolver>(new HierarchicalLifetimeManager());
+            container.RegisterType<IHttpControllerTypeResolver, /*Default*/MyCustomHttpControllerTypeResolver>(new HierarchicalLifetimeManager());
             container.RegisterType<IHttpActionSelector, ApiControllerActionSelector>(new HierarchicalLifetimeManager());
             container.RegisterType<IActionValueBinder, DefaultActionValueBinder>(new HierarchicalLifetimeManager());
             container.RegisterType<IContentNegotiator, DefaultContentNegotiator>(new HierarchicalLifetimeManager(), new InjectionConstructor(true));

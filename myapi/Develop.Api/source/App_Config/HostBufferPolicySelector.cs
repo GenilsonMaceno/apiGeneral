@@ -16,7 +16,7 @@ namespace source.App_Config
 
             if (context != null)
             {
-                var controller = context.Request.RequestContext.RouteData.Values["controller"].ToString();
+                var controller = context.Request.RequestContext.RouteData?.Values?["Controller"]?.ToString();
 
                 if (string.Equals(controller, "uploading", StringComparison.InvariantCultureIgnoreCase))
                 {

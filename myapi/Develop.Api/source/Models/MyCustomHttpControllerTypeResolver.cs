@@ -6,13 +6,14 @@ using System.Web.Http.Dispatcher;
 
 namespace source.Models
 {
-    public class HttpControllerTypeResolver : IHttpControllerTypeResolver
+    public class MyCustomHttpControllerTypeResolver : IHttpControllerTypeResolver
     {
-        public HttpControllerTypeResolver() { }
+        public MyCustomHttpControllerTypeResolver() { }
 
         public ICollection<Type> GetControllerTypes(IAssembliesResolver assembliesResolver)
         {
-            return new List<Type>();
+
+            return (ICollection<Type>)assembliesResolver.GetAssemblies();
         }
     }
 }
