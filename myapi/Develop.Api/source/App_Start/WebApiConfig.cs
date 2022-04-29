@@ -20,6 +20,7 @@ using System.Web.Http.WebHost;
 using Unity;
 using Unity.Injection;
 using Unity.Lifetime;
+using Unity.WebApi;
 
 namespace source
 {
@@ -47,22 +48,9 @@ namespace source
 
             container.RegisterType<IGoogleServices, GoogleServices>(new HierarchicalLifetimeManager());
 
-            container.RegisterType<IHostBufferPolicySelector, HostBufferPolicySelector>(new HierarchicalLifetimeManager()); // para entrada de buffer
-            container.RegisterType<IExceptionHandler, DefaultExceptionHandler>(new HierarchicalLifetimeManager()); // para tratamento exceção de requisição global
-            container.RegisterType<ModelMetadataProvider, EmptyModelMetadataProvider>(new HierarchicalLifetimeManager());
-            container.RegisterType<ITraceManager, TraceManager>(new HierarchicalLifetimeManager());
-            container.RegisterType<ITraceWriter, SimpleTracer>(new HierarchicalLifetimeManager());
-            container.RegisterType<IHttpControllerSelector, DefaultHttpControllerSelector>(new HierarchicalLifetimeManager(), new InjectionConstructor(config));
-            container.RegisterType<IAssembliesResolver, DefaultAssembliesResolver>(new HierarchicalLifetimeManager());
-            container.RegisterType<IHttpControllerTypeResolver, /*Default*/MyCustomHttpControllerTypeResolver>(new HierarchicalLifetimeManager());
-            container.RegisterType<IHttpActionSelector, ApiControllerActionSelector>(new HierarchicalLifetimeManager());
-            container.RegisterType<IActionValueBinder, DefaultActionValueBinder>(new HierarchicalLifetimeManager());
-            container.RegisterType<IContentNegotiator, DefaultContentNegotiator>(new HierarchicalLifetimeManager(), new InjectionConstructor(true));
-            container.RegisterType<IHttpControllerActivator, DefaultHttpControllerActivator>(new HierarchicalLifetimeManager());
 
 
-
-            config.DependencyResolver = new UnityResolver(container);
+            config.DependencyResolver = new UnityDependencyResolver(container);
         }
     }
 }
