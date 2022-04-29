@@ -49,7 +49,6 @@ namespace source
             container.RegisterType<IGoogleServices, GoogleServices>(new HierarchicalLifetimeManager());
 
 
-
             config.DependencyResolver = new UnityDependencyResolver(container);
         }
     }

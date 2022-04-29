@@ -12,12 +12,14 @@ using source.Interfarce.Services;
 
 namespace source.Controllers
 {
+    [RoutePrefix("Api/{version}/google")]
     public class GoogleController : ApiController
     {
 
         private readonly IGoogleServices _googleServices;
         private GoogleOutput _output;
 
+        
         public GoogleController(IGoogleServices googleServices)
         {
             _googleServices = googleServices;
@@ -27,15 +29,30 @@ namespace source.Controllers
 
         // GET: api/google/authorize
         [HttpGet]
-        [ActionName("authorize")] // Nomeando uma action
+        //[ActionName("authorize")] // Nomeando uma action
+        [Route("authorize" , Name = "UrlAllow")]
         public async Task<HttpResponseMessage> UrlAuthorize()
         {
 
-            _output.Google = await _googleServices.GetURIAthorize();
-            _output.Status = "Sucesso";
-            _output.Message = "Sucesso na requisição";
+            try
+            {
+                _output.Google = await _googleServices.GetURIAthorize();
+                _output.Status = "Sucesso";
+                _output.Message = "Sucesso na requisição";
 
-            return Request.CreateResponse(HttpStatusCode.OK, _output);
+                /* PARA CRIAR UM LINK A PARTIR DO NOME DADO
+                var response = Request.CreateResponse(HttpStatusCode.Created);
+                string uri = Url.Link("UrlAllow", new { Url = "google" });
+                response.Headers.Location = new Uri(uri);
+                */
+
+                return Request.CreateResponse(HttpStatusCode.OK, _output);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }           
         }
 
     }
